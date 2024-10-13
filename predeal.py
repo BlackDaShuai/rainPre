@@ -32,7 +32,7 @@ else:
             black_background = np.zeros_like(image)
 
             # 使用掩码将背景部分替换为白色，保留前景部分
-            result = np.where(mask[:, :, None] == 255, image, black_background)
+            result = np.where(mask[:, :, None] == 255, image, white_background)
 
             # 显示结果
             cv.imshow('Subtracted Image', result)
