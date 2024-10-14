@@ -2,9 +2,12 @@ import cv2 as cv
 import numpy as np
 
 # 加载两张图片
-# image = cv.imread('dataSet/0.PNG')
-background = cv.imread('dataSet/background.PNG')
-output_folder = 'overDataSet/'
+pth_in = 'dataSet2/'
+pth_out = 'overDataSet2/'
+
+background = cv.imread(pth_in+'background.PNG')
+
+output_folder = pth_out
 
 
 # 检查图片是否成功加载
@@ -13,7 +16,7 @@ if background is None:
 else:
     # 确保两幅图像大小相同
     for i in range(241):
-        image_path = f'dataSet/{i}.PNG'
+        image_path = pth_in+f'{i}.PNG'
         image = cv.imread(image_path)
 
         if image.shape == background.shape:
