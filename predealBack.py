@@ -2,8 +2,8 @@ import cv2 as cv
 import numpy as np
 
 # 加载两张图片
-pth_in = 'dataSet2/'
-pth_out = 'overDataSet2/'
+pth_in = 'dataSet1/'
+pth_out = 'overDataSet1/'
 
 background = cv.imread(pth_in+'background.PNG')
 
@@ -35,12 +35,13 @@ else:
             black_background = np.zeros_like(image)
 
             # 使用掩码将背景部分替换为白色，保留前景部分
-            result = np.where(mask[:, :, None] == 255, image, white_background)
+            result = np.where(mask[:, :, None] == 255, image, black_background)
+            blurred_result = cv.GaussianBlur(result, (7, 7), 0)
 
             # 显示结果
-            cv.imshow('Subtracted Image', result)
+            # cv.imshow('Subtracted Image', result)
 
             output_path = f'{output_folder}/{i}.PNG'
-            cv.imwrite(output_path, result)
+            cv.imwrite(output_path, blurred_result)
         else:
             print("Error: 图像尺寸不匹配，无法执行减法操作！")
